@@ -15,7 +15,7 @@
   
   
     <!-- Pizza Form -->
-    <form class="pizza-form" [formGroup]="pizzaForm" novalidate>
+    <form class="pizza-form" [formGroup]="pizzaForm"  (ngSubmit)= "onSubmit($event)"novalidate>
 
     
 

@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, map} from 'rxjs';
 
 
-interface PizzaResponse{
+export interface PizzaResponse{
     msg: string;
     pizzas: PizzaEntity[];
 
@@ -16,9 +16,9 @@ interface PizzaResponse{
 
 export class PizzasService{
     constructor(private http: HttpClient){ }
-    getPizzaPresets(): Observable<PizzaEntity[]>{
+    getPizzaPresets(): Observable<PizzaResponse>{
         return this.http
-        .get<PizzaResponse>('/api/pizzas/presets')
-        .pipe(map((data) => data.pizzas));
+        .get<PizzaResponse>('/api/pizzas/presets');
+        
     }
 }

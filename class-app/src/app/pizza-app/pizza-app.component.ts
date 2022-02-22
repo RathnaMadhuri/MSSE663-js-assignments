@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Pizza} from 'api/lib/api-interfaces';
 import { map, startWith } from 'rxjs';
+import { PizzasStateService } from '../shared/services/pizzas-state.service';
 
 type PizzaPrice = {
   [size: string]: {
@@ -43,7 +44,7 @@ export class PizzaAppComponent {
 
   
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private pizzaStateService: PizzasStateService) {}
 
   //fulfill the requirements of addPizza() in pizza-app.component.html create a function, named it createPizza
   createPizza(){
@@ -75,6 +76,14 @@ export class PizzaAppComponent {
 
     }, 0);
     return price.toFixed(2);
+  }
+
+  onSubmit(event: any) {
+    console.log(event);
+    const { pizzas } = this.pizzaForm.value;
+    console.log(pizzas);
+    
+    this.pizzaStateService.createPizzas(pizzas);
   }
    
 }
