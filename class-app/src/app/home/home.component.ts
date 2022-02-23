@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { pluck } from 'rxjs';
+import {  pluck, tap } from 'rxjs';
+import {Store} from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-
+import {PizzasState, selectPizzas, } from '../pizza-app/state';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 
 export class HomeComponent  {
   
-  readonly pizzas$ = this.activatedRoute.data.pipe(pluck('pizzas'));
+  readonly pizzas$ = this.store.select(selectPizzas);
   
-  constructor(private activatedRoute: ActivatedRoute ){}
+  constructor(private store: Store<PizzasState> ){}
 
   }
   

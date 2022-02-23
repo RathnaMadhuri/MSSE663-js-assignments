@@ -15,10 +15,29 @@ import { PizzaAppComponent } from './pizza-app/pizza-app.component';
 import { NavBarComponent } from './shared/components/nav-bar.component';
 import { SizePipe } from './shared/pipes/size.pipe';
 import { PizzaSummaryComponent } from './pizza-app/components/pizza-summary/pizza-summary.component';
+import { StoreModule } from '@ngrx/store';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { PizzasEffects, reducer } from './pizza-app/state'
 @NgModule({
   declarations: [AppComponent, NavBarComponent, HomeComponent, PizzaAppComponent, PizzaSizeComponent, PizzaToppingsComponent, PizzaSummaryComponent, PizzViewerComponent, PizzaCreatorComponent, SizePipe], 
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, ],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, StoreModule.forRoot(
+    {pizzas: reducer},
+    
+     {
+       metaReducers: !environment.production ? []: [],
+       runtimeChecks:{
+         strictActionImmutability: true,
+         strictStateImmutability: true,
+     },
+
+  }
+  ), 
+  EffectsModule.forRoot([PizzasEffects]),
+  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), EffectsModule.forRoot([]), 
+],
   providers: [],
   bootstrap: [AppComponent],
 })
