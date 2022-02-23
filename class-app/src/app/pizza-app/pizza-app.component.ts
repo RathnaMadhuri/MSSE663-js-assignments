@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormArray,FormBuilder, Validators } from '@angular/forms';
 import {Pizza} from 'api/lib/api-interfaces';
 import { map, startWith } from 'rxjs';
-import { PizzasStateService } from '../shared/services/pizzas-state.service';
+import { PizzasState } from './state';
+import {Store} from '@ngrx/store';
+import {savePizzas} from './state';
 
 type PizzaPrice = {
   [size: string]: {
@@ -44,7 +46,7 @@ export class PizzaAppComponent {
 
   
 
-  constructor(private fb: FormBuilder, private pizzaStateService: PizzasStateService) {}
+  constructor(private fb: FormBuilder, private store: Store< PizzasState>) {}
 
   //fulfill the requirements of addPizza() in pizza-app.component.html create a function, named it createPizza
   createPizza(){
@@ -83,7 +85,7 @@ export class PizzaAppComponent {
     const { pizzas } = this.pizzaForm.value;
     console.log(pizzas);
     
-    this.pizzaStateService.createPizzas(pizzas);
+    this.store.dispatch(savePizzas({pizzas}));
   }
    
 }

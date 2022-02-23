@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {  pluck, tap } from 'rxjs';
+
 import {Store} from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+
 import {PizzasState, selectPizzas, } from '../pizza-app/state';
 @Component({
   selector: 'app-home',
