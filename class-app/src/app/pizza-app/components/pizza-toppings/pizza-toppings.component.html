@@ -4,7 +4,7 @@
     *ngFor="let topping of toppings"
     class= "pizza-topping"
     [class.pizza-topping--active]="value.includes(topping)"
-    [class.pizza-topping--focused]="focused== topping"
+    [class.pizza-topping--focused]="focused=== topping"
     >
 <input 
 

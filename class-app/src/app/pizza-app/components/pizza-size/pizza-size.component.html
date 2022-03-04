@@ -3,8 +3,8 @@
     <label 
     *ngFor="let size of sizes; let i  = index"
     class= "pizza-size_item"
-    [class.pizza-size_item--active]="value == size.type"
-    [class.pizza-size_item--focused]="value == size.type"
+    [class.pizza-size_item--active]="value === size.type"
+    [class.pizza-size_item--focused]="value === size.type"
     >
 <input 
 
@@ -14,7 +14,7 @@ name="size"
 (blur)="onBlur()"
 (change)="onChange(size.type)"
 (focus)="onFocus(size.type)"
-[checked]="value == size.type"
+[checked]="value === size.type"
 />
 
 <div class="pizza-size__plate">

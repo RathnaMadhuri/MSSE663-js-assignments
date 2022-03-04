@@ -16,13 +16,13 @@ import { NavBarComponent } from './shared/components/nav-bar.component';
 import { SizePipe } from './shared/pipes/size.pipe';
 import { PizzaSummaryComponent } from './pizza-app/components/pizza-summary/pizza-summary.component';
 import { StoreModule } from '@ngrx/store';
-
+import {PanelDirective} from './shared/directives/panel.directive';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { PizzasEffects, reducer } from './pizza-app/state'
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, HomeComponent, PizzaAppComponent, PizzaSizeComponent, PizzaToppingsComponent, PizzaSummaryComponent, PizzViewerComponent, PizzaCreatorComponent, SizePipe], 
+  declarations: [AppComponent, NavBarComponent, HomeComponent, PizzaAppComponent, PizzaSizeComponent, PizzaToppingsComponent, PizzaSummaryComponent, PizzViewerComponent, PizzaCreatorComponent, SizePipe, PanelDirective], 
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, StoreModule.forRoot(
     {pizzas: reducer},
     
